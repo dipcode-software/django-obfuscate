@@ -1,5 +1,5 @@
 # Django obfuscator
-Django app to obfuscate data using django models.
+Django app to obfuscate data.
 
 ## How to install
 To install the app run:
