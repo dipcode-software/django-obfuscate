@@ -18,7 +18,6 @@ DEFAULTS = {
         models.PositiveIntegerField: 'int',
         models.PositiveSmallIntegerField: 'int',
     },
-    'FIELDS': {},
     'FIELDS': {}
 }
 
