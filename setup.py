@@ -3,7 +3,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='django-obfuscator',
+    name='django-obfuscate',
     version=__import__("obfuscator").__version__,
     packages=find_packages(),
     include_package_data=True,

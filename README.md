@@ -10,7 +10,7 @@ Table of contents:
 ## How to install
 To install the app run:
 ```shell
-$ pip install django-obfuscator
+$ pip install django-obfuscate
 ```
 or add it to the list of requirements of your project.
 
