@@ -2,24 +2,8 @@
 from __future__ import unicode_literals
 
 import hashlib
-from importlib import import_module
 
-from obfuscator import conf
-
-
-def import_from_string(val):
-    """
-    Attempt to import a class from a string representation.
-    """
-    try:
-        parts = val.split('.')
-        module_path, class_name = '.'.join(parts[:-1]), parts[-1]
-        module = import_module(module_path)
-        return getattr(module, class_name)
-    except (ImportError, AttributeError) as e:
-        msg = "Could not import '{}'. {}: {}.".format(
-            val, e.__class__.__name__, e)
-        raise ImportError(msg)
+from obfuscator.conf import settings
 
 
 class ObfuscatorUtils(object):
@@ -52,7 +36,7 @@ class ObfuscatorUtils(object):
 
     @classmethod
     def obfuscate(cls, field, value):
-        name = conf.FIELD_OBFUSCATORS.get(type(field), None)
+        name = settings.FIELDS_MAPPING.get(type(field), None)
         if not name:
             raise ValueError("No obfuscator defined for fields of type '{}'"
                              .format(type(field)))
@@ -64,4 +48,4 @@ class ObfuscatorUtils(object):
                       unique=getattr(field, 'unique', None))
 
 
-obfuscator = import_from_string(conf.FIELD_OBFUSCATOR_CLASS).obfuscate
+obfuscator = getattr(settings.OBFUSCATOR_CLASS, 'obfuscate')

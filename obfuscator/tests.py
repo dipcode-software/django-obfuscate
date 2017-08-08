@@ -12,7 +12,16 @@ class ObfuscateCommandTest(TestCase):
         with self.assertRaises(CommandError):
             call_command("obfuscate")
 
-    def test_command(self):
+    def test_command_with_args(self):
         call_command("obfuscate", "--model=contenttypes.contenttype",
                      "--fields=model")
+        self.assertTrue(1)
+
+    def test_command_without_args(self):
+        with self.settings(OBFUSCATOR={
+            'FIELDS': {
+                'contenttypes.ContentType': ['model']
+            }
+        }):
+            call_command("obfuscate")
         self.assertTrue(1)

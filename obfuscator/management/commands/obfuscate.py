@@ -5,6 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import BaseCommand
 
 from obfuscator import utils
+from obfuscator.conf import settings
 
 
 class Command(BaseCommand):
@@ -12,18 +13,31 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         """ """
+        args_required = not bool(settings.FIELDS)
         parser.add_argument(
-            '--model', type=str, required=True, dest='model',
+            '--model', type=str, required=args_required, dest='model',
             metavar="app_label.ModelClass", help="model name to obfuscate")
         parser.add_argument(
-            '--fields', nargs='+', type=str, required=True, dest='fields',
-            metavar="field", help="fields name of model to be obfuscated")
+            '--fields', nargs='+', type=str, required=args_required,
+            dest='fields', metavar="field",
+            help="fields name of model to be obfuscated")
 
     def handle(self, *args, **options):
         """ """
         naturalkey = options.get('model')
-        fields = options.get('fields', None)
-        model_class = self._get_model_class(naturalkey)
+        fields = options.get('fields')
+        if naturalkey and fields:
+            model_class = self._get_model_class(naturalkey)
+            self.work(model_class, fields)
+        elif bool(settings.FIELDS):
+            for naturalkey, fields in settings.FIELDS.items():
+                model_class = self._get_model_class(naturalkey)
+                self.work(model_class, fields)
+        else:
+            raise ValueError(
+                "Args not providaded or 'FIELDS' setting not defined")
+
+    def work(self, model_class, fields):
         if self._validate_fields(model_class, fields):
             for obj in model_class.objects.only(*fields).all():
                 data = {}
