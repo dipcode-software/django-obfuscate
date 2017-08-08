@@ -1,22 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import hashlib
-
 from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import BaseCommand
-from django.db import models
 
-
-VALID_FIELDS_CLASS = [
-    models.CharField,
-    models.TextField,
-    models.EmailField,
-    models.IntegerField,
-    models.SmallIntegerField,
-    models.PositiveIntegerField,
-    models.PositiveSmallIntegerField,
-]
+from obfuscator import utils
 
 
 class Command(BaseCommand):
@@ -42,42 +30,8 @@ class Command(BaseCommand):
                 for field_name in fields:
                     field = model_class._meta.get_field(field_name)
                     value = getattr(obj, field_name)
-                    if isinstance(field, models.EmailField):
-                        data[field_name] = self.obfuscate_email(
-                            value, field.max_length)
-                    elif isinstance(field, models.CharField):
-                        data[field_name] = self.obfuscate_text(
-                            value, field.max_length)
-                    elif isinstance(field, models.TextField):
-                        data[field_name] = self.obfuscate_text(value)
-                    elif isinstance(field, models.IntegerField):
-                        data[field_name] = self.obfuscate_int(value)
-                    else:
-                        raise TypeError("Invalid type '{}' for field '{}'"
-                                        .format(type(field), field_name))
+                    data[field_name] = utils.obfuscator(field, value)
                 model_class.objects.filter(pk=obj.pk).update(**data)
-
-    def obfuscate_email(self, value, max_length):
-        """ """
-        username, domain = value.split('@')
-        username = hashlib.sha224(username).hexdigest()
-        length = len(username) + len(domain) + 1
-        if length > max_length:
-            username = username[:(max_length - length)]
-        return "{username}@{domain}".format(
-            username=username, domain=domain)
-
-    def obfuscate_text(self, value, max_length=None):
-        """ """
-        hashed_value = hashlib.sha224(value).hexdigest()
-        length = len(hashed_value)
-        if max_length and length > max_length:
-            hashed_value = hashed_value[:(max_length - length)]
-        return hashed_value
-
-    def obfuscate_int(self, value, unique=False):
-        """ """
-        pass
 
     def _validate_fields(self, model_class, fields):
         # check if all fields are valid and exists for the model_class
@@ -87,9 +41,10 @@ class Command(BaseCommand):
             if field_name not in valid_fields:
                 invalid_fields.append(field_name)
         if invalid_fields:
-            raise ValueError("Invalid fields for model '{}': {}"
-                             .format(model_class.__class__.__name__,
-                                     ",".join(invalid_fields)))
+            raise ValueError(
+                "Invalid fields for model class {}: {}"
+                .format(model_class.__class__.__name__,
+                        ",".join(invalid_fields)))
         return True
 
     def _get_model_class(self, option):
