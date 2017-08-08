@@ -13,10 +13,6 @@ DEFAULTS = {
         models.CharField: 'text',
         models.TextField: 'text',
         models.EmailField: 'email',
-        models.IntegerField: 'int',
-        models.SmallIntegerField: 'int',
-        models.PositiveIntegerField: 'int',
-        models.PositiveSmallIntegerField: 'int',
     },
     'FIELDS': {}
 }

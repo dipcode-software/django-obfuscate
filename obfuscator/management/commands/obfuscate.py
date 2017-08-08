@@ -34,18 +34,23 @@ class Command(BaseCommand):
                 model_class = self._get_model_class(naturalkey)
                 self.work(model_class, fields)
         else:
-            raise ValueError(
-                "Args not providaded or 'FIELDS' setting not defined")
+            self.perror("Args not providaded or 'FIELDS' setting not defined")
 
     def work(self, model_class, fields):
         if self._validate_fields(model_class, fields):
-            for obj in model_class.objects.only(*fields).all():
+            qs = model_class.objects.only(*fields).all()
+            self.pinfo("Starting offuscation: model={} fields={} total={}"
+                       .format(model_class, ','.join(fields), qs.count()))
+            for obj in qs:
                 data = {}
                 for field_name in fields:
-                    field = model_class._meta.get_field(field_name)
                     value = getattr(obj, field_name)
-                    data[field_name] = utils.obfuscator(field, value)
+                    if value:
+                        field = model_class._meta.get_field(field_name)
+                        data[field_name] = utils.obfuscator(
+                            field, value.encode('utf-8'))
                 model_class.objects.filter(pk=obj.pk).update(**data)
+            self.psuccess("Finished offuscation")
 
     def _validate_fields(self, model_class, fields):
         # check if all fields are valid and exists for the model_class
@@ -70,3 +75,18 @@ class Command(BaseCommand):
         model = naturalkey[-1].lower()
         return ContentType.objects.get_by_natural_key(app_label, model)\
             .model_class()
+
+    def psuccess(self, msg):
+        if self.stdout.isatty():
+            msg = self.style.SUCCESS(msg)
+        self.stdout.write(msg)
+
+    def pinfo(self, msg):
+        if self.stdout.isatty():
+            msg = self.style.MIGRATE_HEADING(msg)
+        self.stdout.write(msg)
+
+    def perror(self, msg):
+        if self.stderr.isatty():
+            msg = self.style.ERROR(msg)
+        self.stderr.write(msg)

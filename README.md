@@ -1,10 +1,11 @@
 # Django obfuscator
-Django app to obfuscate data.
+Django app to obfuscate text data.
 
 Table of contents:
  * [How to install](#how-to-install);
  * [Example usage](#example-usage);
- * [Settings reference](#settings-reference).
+ * [Settings reference](#settings-reference);
+ * [License](#license).
 
 ## How to install
 To install the app run:
@@ -49,10 +50,9 @@ $ python manage.py obfuscate --model=app_label.ModelClass1 --fields=field1, fiel
 
 Default: `obfuscator.utils.ObfuscatorUtils`
 
-Path to class where obfuscator methods are defined. By default, the class define three obfuscator methods:
+Path to class where obfuscator methods are defined. By default, the class define tow obfuscator methods:
  * `text` - Obfuscate simple text data, respecting `max-length` field parameter;
- * `email` - Obfuscate email data. Only text before @ is obfuscated, respecting `max-length` field parameter ;
- * `int` - Obfuscate integer data.
+ * `email` - Obfuscate email data. Only text before `@` is obfuscated, respecting `max-length` field parameter.
 
 This class also define an `obfuscate` method. This method use fields mapping (see `FIELDS_MAPPING` setting) to route the field type with the obfuscate method.
 
@@ -65,11 +65,7 @@ Default:
 {
     models.CharField: 'text',
     models.TextField: 'text',
-    models.EmailField: 'email',
-    models.IntegerField: 'int',
-    models.SmallIntegerField: 'int',
-    models.PositiveIntegerField: 'int',
-    models.PositiveSmallIntegerField: 'int'
+    models.EmailField: 'email'
 }
 ```
 
@@ -89,3 +85,8 @@ Example:
     // ...
 }
 ```
+
+
+## License
+
+MIT license, see the LICENSE file. You can use obfuscator in open source projects and commercial products.

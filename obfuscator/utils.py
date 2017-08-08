@@ -29,11 +29,6 @@ class ObfuscatorUtils(object):
             hashed_value = hashed_value[:(max_length - length)]
         return hashed_value
 
-    @staticmethod
-    def int(value, unique=False, **kwargs):
-        """ """
-        pass
-
     @classmethod
     def obfuscate(cls, field, value):
         name = settings.FIELDS_MAPPING.get(type(field), None)
