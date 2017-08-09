@@ -1,4 +1,6 @@
 # Django obfuscator
+[![BCH compliance](https://bettercodehub.com/edge/badge/dipcode-software/django-obfuscator?branch=master)](https://bettercodehub.com/)
+
 Django app to obfuscate text data.
 
 Table of contents:
