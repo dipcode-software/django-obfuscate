@@ -1,4 +1,7 @@
 # Django obfuscator
+[![Build Status](https://travis-ci.org/dipcode-software/django-obfuscator.svg)](https://travis-ci.org/dipcode-software/django-obfuscator)
+[![Coverage Status](https://coveralls.io/repos/github/dipcode-software/django-obfuscator/badge.svg)](https://coveralls.io/github/dipcode-software/django-obfuscator)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f5a70162349142b9a714edae4e4ae413)](https://www.codacy.com/app/srtabs/django-obfuscator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dipcode-software/django-obfuscator&amp;utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/dipcode-software/django-obfuscator?branch=master)](https://bettercodehub.com/)
 
 Django app to obfuscate text data.
@@ -77,7 +80,8 @@ Map django model field types with obfuscator methods.
 
 Default: `{}`
 
-Fields to be obfuscated and respective model class path. Must by a `dict` with keys as python dot notation to path where models are declared and values as lists of model fields.
+Fields to be obfuscated and respective model class path. Must be a `dict` with keys as python dot notation to path where the models are declared and the values must be declared as lists of model fields.
+
 If no value defined, the management command will do nothing.
 
 Example:
