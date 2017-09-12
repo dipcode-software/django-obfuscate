@@ -23,7 +23,7 @@ class ObfuscatorSettingsTest(SimpleTestCase):
 
     def test_getattr_not_defined(self):
         with self.assertRaises(AttributeError):
-            settings.DUMMY
+            settings.__getattr__('DUMMY')
 
     def test_getattr_default(self):
         self.assertEqual(settings.FIELDS, {})
