@@ -9,5 +9,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix to interaction with models default queryset of the host project
 
 ## 0.1.0 - 2017-08-08
-### Added
 - First release on PyPi
