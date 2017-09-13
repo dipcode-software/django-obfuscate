@@ -38,7 +38,7 @@ class Command(BaseCommand):
 
     def work(self, model_class, fields):
         if self._validate_fields(model_class, fields):
-            qs = model_class.objects.only(*fields).all()
+            qs = model_class._default_manager.only(*fields).all()
             self.pinfo("Starting offuscation: model={} fields={} total={}"
                        .format(model_class, ','.join(fields), qs.count()))
             for obj in qs:
@@ -49,7 +49,7 @@ class Command(BaseCommand):
                         field = model_class._meta.get_field(field_name)
                         data[field_name] = utils.obfuscator(
                             field, value.encode('utf-8'))
-                model_class.objects.filter(pk=obj.pk).update(**data)
+                model_class._default_manager.filter(pk=obj.pk).update(**data)
             self.psuccess("Finished offuscation")
 
     def _validate_fields(self, model_class, fields):
