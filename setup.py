@@ -10,7 +10,7 @@ setup(
     description='Django app to obfuscate data.',
     url='https://github.com/dipcode-software/django-obfuscator',
     author='Dipcode',
-    author_email='info@dipcode.com',
+    author_email='team@dipcode.com',
     keywords=['django', 'django-models', 'models', 'obfuscator'],
     classifiers=[
         'Environment :: Web Environment',
