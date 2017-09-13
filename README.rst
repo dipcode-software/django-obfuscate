@@ -5,8 +5,11 @@ Django obfuscator
 
 Django app to obfuscate text data.
 
-Table of contents: \* `How to install`_; \* `Example usage`_; \*
-`Settings reference`_; \* `License`_.
+Table of contents:
+ * `How to install`_;
+ * `Example usage`_;
+ * `Settings reference`_;
+ * `License`_.
 
 How to install
 --------------
