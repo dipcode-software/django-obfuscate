@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 0.1.1 - 2017-09-13
 ### Fixed
-- Fix to interaction with models of the host project
+- Fix to interaction with models default queryset of the host project
 
 ## 0.1.0 - 2017-08-08
 ### Added
