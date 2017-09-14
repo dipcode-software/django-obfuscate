@@ -1,6 +1,8 @@
 Django obfuscator
 =================
 
+|Build Status| |Coverage Status| |Codacy Badge| |BCH compliance|
+
 Django app to obfuscate text data.
 
 Table of contents: \* `How to install`_; \* `Example usage`_; \*
@@ -97,10 +99,11 @@ FIELDS
 
 Default: ``{}``
 
-Fields to be obfuscated and respective model class path. Must by a
-``dict`` with keys as python dot notation to path where models are
-declared and values as lists of model fields. If no value defined, the
-management command will do nothing.
+Fields to be obfuscated and respective model class path. Must be a
+``dict`` with keys as python dot notation to path where the models are
+declared and the values must be declared as lists of model fields.
+
+If no value defined, the management command will do nothing.
 
 Example:
 
@@ -121,3 +124,12 @@ projects and commercial products.
 .. _Example usage: #example-usage
 .. _Settings reference: #settings-reference
 .. _License: #license
+
+.. |Build Status| image:: https://travis-ci.org/dipcode-software/django-obfuscator.svg
+   :target: https://travis-ci.org/dipcode-software/django-obfuscator
+.. |Coverage Status| image:: https://coveralls.io/repos/github/dipcode-software/django-obfuscator/badge.svg
+   :target: https://coveralls.io/github/dipcode-software/django-obfuscator
+.. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/f5a70162349142b9a714edae4e4ae413
+   :target: https://www.codacy.com/app/srtabs/django-obfuscator?utm_source=github.com&utm_medium=referral&utm_content=dipcode-software/django-obfuscator&utm_campaign=Badge_Grade
+.. |BCH compliance| image:: https://bettercodehub.com/edge/badge/dipcode-software/django-obfuscator?branch=master
+   :target: https://bettercodehub.com/
