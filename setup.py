@@ -13,7 +13,7 @@ from setuptools import Command, find_packages, setup
 VERSION = __import__("obfuscator").__version__
 NAME = 'django-obfuscate'
 DESCRIPTION = 'Django app to obfuscate data. '
-URL = 'https://github.com/dipcode-software/django-obfuscator'
+URL = 'https://github.com/dipcode-software/django-obfuscate'
 EMAIL = 'team@dipcode.com'
 AUTHOR = 'Dipcode'
 
