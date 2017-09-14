@@ -1,4 +1,4 @@
-Django obfuscator
+Django obfuscate
 =================
 
 |Build Status| |Coverage Status| |Codacy Badge| |BCH compliance|
@@ -128,11 +128,11 @@ projects and commercial products.
 .. _Settings reference: #settings-reference
 .. _License: #license
 
-.. |Build Status| image:: https://travis-ci.org/dipcode-software/django-obfuscator.svg
-   :target: https://travis-ci.org/dipcode-software/django-obfuscator
-.. |Coverage Status| image:: https://coveralls.io/repos/github/dipcode-software/django-obfuscator/badge.svg
-   :target: https://coveralls.io/github/dipcode-software/django-obfuscator
+.. |Build Status| image:: https://travis-ci.org/dipcode-software/django-obfuscate.svg
+   :target: https://travis-ci.org/dipcode-software/django-obfuscate
+.. |Coverage Status| image:: https://coveralls.io/repos/github/dipcode-software/django-obfuscate/badge.svg
+   :target: https://coveralls.io/github/dipcode-software/django-obfuscate
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/f5a70162349142b9a714edae4e4ae413
-   :target: https://www.codacy.com/app/srtabs/django-obfuscator?utm_source=github.com&utm_medium=referral&utm_content=dipcode-software/django-obfuscator&utm_campaign=Badge_Grade
-.. |BCH compliance| image:: https://bettercodehub.com/edge/badge/dipcode-software/django-obfuscator?branch=master
+   :target: https://www.codacy.com/app/srtabs/django-obfuscate?utm_source=github.com&utm_medium=referral&utm_content=dipcode-software/django-obfuscate&utm_campaign=Badge_Grade
+.. |BCH compliance| image:: https://bettercodehub.com/edge/badge/dipcode-software/django-obfuscate?branch=master
    :target: https://bettercodehub.com/
