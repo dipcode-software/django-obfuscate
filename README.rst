@@ -108,7 +108,20 @@ declared and the values must be declared as lists of model fields.
 
 If no value defined, the management command will do nothing.
 
-Example: \`\`\`python { ’contenttype
+Example:
+
+.. code:: python
+
+    {
+        'contenttypes.ContentType': ['model', 'label'],
+        // ...
+    }
+
+License
+-------
+
+MIT license, see the LICENSE file. You can use obfuscator in open source
+projects and commercial products.
 
 .. _How to install: #how-to-install
 .. _Example usage: #example-usage
