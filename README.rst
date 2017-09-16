@@ -1,15 +1,20 @@
 Django obfuscate
 =================
 
-|Build Status| |Coverage Status| |Codacy Badge| |BCH compliance|
+|Build Status| |Coverage Status| |Codacy Badge| |BCH compliance| |Pypi|
 
 Django app to obfuscate text data.
 
 Table of contents:
+ * `Compatibility`_;
  * `How to install`_;
  * `Example usage`_;
  * `Settings reference`_;
  * `License`_.
+
+Compatibility
+-------------
+Tested with python 2.7, 3.4, 3.5, 3.6 and Django 1.9, 1.10, 1.11: `Travis CI <https://travis-ci.org/dipcode-software/django-obfuscate>`_
 
 How to install
 --------------
@@ -123,6 +128,7 @@ License
 MIT license, see the LICENSE file. You can use obfuscator in open source
 projects and commercial products.
 
+.. _Compatibility: #compatibility
 .. _How to install: #how-to-install
 .. _Example usage: #example-usage
 .. _Settings reference: #settings-reference
@@ -136,3 +142,5 @@ projects and commercial products.
    :target: https://www.codacy.com/app/srtabs/django-obfuscate?utm_source=github.com&utm_medium=referral&utm_content=dipcode-software/django-obfuscate&utm_campaign=Badge_Grade
 .. |BCH compliance| image:: https://bettercodehub.com/edge/badge/dipcode-software/django-obfuscate?branch=master
    :target: https://bettercodehub.com/
+.. |Pypi| image:: https://img.shields.io/pypi/v/django-obfuscate.svg?style=flat
+   :target: https://pypi.python.org/pypi/django-obfuscate
