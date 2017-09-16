@@ -13,7 +13,7 @@ class ObfuscatorUtils(object):
     def email(value, max_length, **kwargs):
         """ """
         username, domain = value.split('@')
-        username = hashlib.sha224(username).hexdigest()
+        username = hashlib.sha224(username.encode('utf-8')).hexdigest()
         length = len(username) + len(domain) + 1
         if length > max_length:
             username = username[:(max_length - length)]
@@ -23,7 +23,7 @@ class ObfuscatorUtils(object):
     @staticmethod
     def text(value, max_length=None, **kwargs):
         """ """
-        hashed_value = hashlib.sha224(value).hexdigest()
+        hashed_value = hashlib.sha224(value.encode('utf-8')).hexdigest()
         length = len(hashed_value)
         if max_length and length > max_length:
             hashed_value = hashed_value[:(max_length - length)]

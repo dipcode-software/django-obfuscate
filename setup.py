@@ -12,7 +12,7 @@ from setuptools import Command, find_packages, setup
 # Package meta-data.
 VERSION = __import__("obfuscator").__version__
 NAME = 'django-obfuscate'
-DESCRIPTION = 'Django app to obfuscate data. '
+DESCRIPTION = 'Django app to obfuscate text data.'
 URL = 'https://github.com/dipcode-software/django-obfuscate'
 EMAIL = 'team@dipcode.com'
 AUTHOR = 'Dipcode'
@@ -49,9 +49,9 @@ class PublishCommand(Command):
         except OSError:
             pass
 
-        self.status('Building Source and Wheel distribution…')
+        self.status('Building Source and Wheel (universal) distribution…')
         os.system(
-            '{0} setup.py sdist bdist_wheel '.format(sys.executable)
+            '{0} setup.py sdist bdist_wheel --universal'.format(sys.executable)
         )
 
         self.status('Uploading the package to {env} via Twine…'\
@@ -83,12 +83,17 @@ setup(
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
+        'Framework :: Django :: 1.9',
+        'Framework :: Django :: 1.10',
         'Framework :: Django :: 1.11',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
     cmdclass={
         'publish_dev': DevelopmentPublishCommand,

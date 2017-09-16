@@ -47,8 +47,7 @@ class Command(BaseCommand):
                     value = getattr(obj, field_name)
                     if value:
                         field = model_class._meta.get_field(field_name)
-                        data[field_name] = utils.obfuscator(
-                            field, value.encode('utf-8'))
+                        data[field_name] = utils.obfuscator(field, value)
                 model_class._default_manager.filter(pk=obj.pk).update(**data)
             self.psuccess("Finished offuscation")
 
